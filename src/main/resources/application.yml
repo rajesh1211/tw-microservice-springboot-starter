@@ -4,3 +4,10 @@ server:
 security:
  basic:
   enabled: false
+
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/csmartci
+    username:
+    password:

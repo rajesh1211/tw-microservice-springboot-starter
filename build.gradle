@@ -43,9 +43,9 @@ jooq {
 	csmart(sourceSets.main) {
 		jdbc {
 			driver = 'org.postgresql.Driver'
-			url = 'jdbc:postgresql://localhost:7654/csmartci'
-			user = 'csmartuser'
-			password = 'csmartuser'
+			url = 'jdbc:postgresql://localhost:5432/csmartci'
+			user = 'rajesh'
+			password =
 			schema = 'public'
 		}
 		generator {
@@ -85,9 +85,7 @@ jooq {
 }
 
 flyway {
-	url = 'jdbc:postgresql://localhost:7654/csmartci'
-	user = 'csmartuser'
-	password = 'csmartuser'
+	url = 'jdbc:postgresql://localhost:5432/csmartci'
 	schemas = ['public']
 	locations = ["filesystem:$project.projectDir/src/main/resources/db/migration"]
 }

@@ -3,6 +3,7 @@ package csmart.api.users;
 import csmart.api.db.UserRepo;
 import csmart.api.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,7 +15,8 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-    @PostMapping("/create")
+//    @PostMapping("/create")
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public void createUser(@RequestBody User user){
         userRepo.createUser(user);
     }

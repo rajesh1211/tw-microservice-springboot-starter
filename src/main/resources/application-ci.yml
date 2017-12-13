@@ -3,7 +3,8 @@ spring:
   profiles: ci
 
   datasource:
-    url: jdbc:postgresql://localhost:7654/csmartci
-    username: csmartuser
+    url: jdbc:postgresql://localhost:5432/csmartcitest
+    database: csmartcitest
+    username: rajesh
     password: csmartuser
 

@@ -9,16 +9,12 @@ import csmart.db.gen.tables.records.UsersRecord;
 public class User {
     private String emailid;
     private String password;
-    private Address address;
-    private String practiceName;
-    private boolean primaryUser;
+    private String name;
 
     public User(UsersRecord user) {
         this.emailid = user.getEmailid();
-        this.password = user.getPasswordHash();
-        this.address = JsonType.fromJsonNode(user.getAddress(), Address.class);
-        this.practiceName = user.getPracticeName();
-        this.primaryUser = user.getPrimaryUser();
+        this.password = user.getPassword();
+        this.name = user.getName();
     }
 
     public User() {
@@ -41,27 +37,11 @@ public class User {
         this.password = password;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getName() {
+        return name;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public String getPracticeName() {
-        return practiceName;
-    }
-
-    public void setPracticeName(String practiceName) {
-        this.practiceName = practiceName;
-    }
-
-    public boolean isPrimaryUser() {
-        return primaryUser;
-    }
-
-    public void setPrimaryUser(boolean primaryUser) {
-        this.primaryUser = primaryUser;
+    public void setName(String name) {
+        this.name = name;
     }
 }

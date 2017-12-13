@@ -3,7 +3,8 @@ spring:
  profile: test
 
  datasource:
-   url: jdbc:postgresql://localhost:9876/csmarttest
-   username: csmartuser
+   url: jdbc:postgresql://localhost:5432/csmartcitest
+   database: csmartcitest
+   username: rajesh
    password: csmartuser
 

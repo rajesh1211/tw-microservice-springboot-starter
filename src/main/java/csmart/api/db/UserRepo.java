@@ -21,12 +21,10 @@ public class UserRepo {
 
     public void createUser(User user){
         dsl.insertInto(USERS)
-            .columns(USERS.EMAILID, USERS.PASSWORD_HASH, USERS.ADDRESS, USERS.PRACTICE_NAME, USERS.PRIMARY_USER)
+            .columns(USERS.EMAILID, USERS.PASSWORD, USERS.NAME)
             .values(user.getEmailid(),
                     user.getPassword(),
-                    user.getAddress().toJsonNode(),
-                    user.getPracticeName(),
-                    user.isPrimaryUser())
+                    user.getName())
             .execute();
     }
 
