@@ -7,12 +7,14 @@ import csmart.db.gen.tables.records.UsersRecord;
  * Created by sethur on 1/10/2016.
  */
 public class User {
-    private String emailid;
+    private int id;
+    private String email;
     private String password;
     private String name;
 
     public User(UsersRecord user) {
-        this.emailid = user.getEmailid();
+        this.id= user.getId();
+        this.email= user.getEmail();
         this.password = user.getPassword();
         this.name = user.getName();
     }
@@ -21,12 +23,20 @@ public class User {
 
     }
 
-    public String getEmailid() {
-        return emailid;
+    public int getId() {
+        return id;
     }
 
-    public void setEmailid(String emailid) {
-        this.emailid = emailid;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

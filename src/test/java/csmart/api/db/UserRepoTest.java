@@ -24,18 +24,20 @@ public class UserRepoTest {
 
     @Test
     public void shouldInsertUserInDb(){
-//        User user = createUser();
-//
-//        userRepo.createUser(user);
-//        User returnedUsed = userRepo.getUser("email");
-//
-//        Assert.assertEquals(returnedUsed.getPassword(), user.getPassword());
+        User user = createUser();
+
+        userRepo.createUser(user);
+        User returnedUsed = userRepo.getUser("email");
+
+        Assert.assertEquals(returnedUsed.getPassword(), user.getPassword());
     }
 
     private User createUser() {
         User user = new User();
-        user.setEmailid("email");
+        user.setId(1);
+        user.setEmail("email");
         user.setPassword("password");
+        user.setName("Rajesh Raikwar");
 //        Address address = new Address();
 //        address.setLine1("line1");
 //        address.setLine2("line2");
