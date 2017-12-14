@@ -1,6 +1,6 @@
 package csmart.api.db;
 
-import csmart.api.model.Address;
+import csmart.api.dao.UserRepo;
 import csmart.api.model.User;
 import org.junit.Assert;
 import org.junit.Test;

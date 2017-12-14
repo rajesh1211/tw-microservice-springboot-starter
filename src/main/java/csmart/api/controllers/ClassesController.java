@@ -1,8 +1,10 @@
-package csmart.api.classes;
+package csmart.api.controllers;
 
-import csmart.api.db.ClassRepo;
+import csmart.api.dao.ClassRepo;
 import csmart.api.model.Class;
 import csmart.api.model.User;
+import csmart.api.service.ClassService;
+import csmart.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,41 +16,31 @@ import java.util.List;
 public class ClassesController {
 
     @Autowired
-    private ClassRepo classRepo;
+    private ClassService classService;
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public void createClass(@RequestBody Class klass){
-        classRepo.createClass(klass);
+        classService.createClass(klass);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public @ResponseBody Class getClassById(@PathVariable("id")  int id){
-        return classRepo.getClass(id);
+        return classService.getClassById(id);
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody List<Class> getClasses(){
-        try {
-            return classRepo.getClasses();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return classService.getClasses();
     }
 
     @RequestMapping(value = "/{id}/users", method = RequestMethod.GET)
     public @ResponseBody List<User> getUsersByClass(@PathVariable("id")  int id){
-        try {
-            return classRepo.getUsersByClass(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return classService.getUsersByClass(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteClassById(@PathVariable("id") int id){
-        classRepo.deleteClassById(id);
+        classService.deleteClassById(id);
     }
 
 

@@ -1,4 +1,4 @@
-package csmart.api.db;
+package csmart.api.dao;
 
 import csmart.api.model.User;
 import csmart.db.gen.tables.records.UsersRecord;
