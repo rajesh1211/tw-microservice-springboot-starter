@@ -6,6 +6,8 @@ import csmart.api.model.User;
 import csmart.api.service.ClassService;
 import csmart.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -24,18 +26,18 @@ public class ClassesController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public @ResponseBody Class getClassById(@PathVariable("id")  int id){
-        return classService.getClassById(id);
+    public ResponseEntity<Class> getClassById(@PathVariable("id")  int id){
+        return new ResponseEntity<Class>(classService.getClassById(id), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody List<Class> getClasses(){
-        return classService.getClasses();
+    public ResponseEntity<List<Class>> getClasses(){
+        return new ResponseEntity<List<Class>>(classService.getClasses(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}/users", method = RequestMethod.GET)
-    public @ResponseBody List<User> getUsersByClass(@PathVariable("id")  int id){
-        return classService.getUsersByClass(id);
+    public ResponseEntity<List<User>> getUsersByClass(@PathVariable("id")  int id){
+        return new ResponseEntity<List<User>>(classService.getUsersByClass(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

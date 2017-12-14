@@ -4,7 +4,9 @@ import csmart.api.dao.UserRepo;
 import csmart.api.model.User;
 import csmart.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
@@ -21,24 +23,29 @@ public class UserController {
     private UserService userService;
 
 
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-    public User createUser(@RequestBody User user){
-        return userService.createUser(user);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> createUser(@RequestBody User user){
+        return new ResponseEntity<User>(userService.createUser(user), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public @ResponseBody User getUserById(@PathVariable("id") int id){
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable("id") int id){
+        return new ResponseEntity<User>(userService.getUserById(id), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody List<User> getUsers(){
-        return userService.getUsers();
+    public ResponseEntity<List<User>> getUsers(){
+        List<User> users =  userService.getUsers();
+        if( users.size() > 0 ) {
+            return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User updateUserById(@RequestBody User user){
-        return userService.updateUserById(user);
+    public ResponseEntity<User> updateUserById(@RequestBody User user){
+        return new ResponseEntity<User>(userService.updateUserById(user), HttpStatus.OK);
     }
 
 }
