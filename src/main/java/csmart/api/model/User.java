@@ -4,7 +4,7 @@ import csmart.api.db.JsonType;
 import csmart.db.gen.tables.records.UsersRecord;
 
 /**
- * Created by sethur on 1/10/2016.
+ * Created by Rajesh Raikwar on 14/12/2017.
  */
 public class User {
     private int id;

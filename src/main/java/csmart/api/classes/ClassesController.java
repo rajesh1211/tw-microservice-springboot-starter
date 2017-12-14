@@ -46,5 +46,10 @@ public class ClassesController {
         return null;
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteClassById(@PathVariable("id") int id){
+        classRepo.deleteClassById(id);
+    }
+
 
 }

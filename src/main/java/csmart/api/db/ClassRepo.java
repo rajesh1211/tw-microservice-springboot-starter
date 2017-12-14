@@ -3,10 +3,9 @@ package csmart.api.db;
 import csmart.api.model.Class;
 import csmart.api.model.User;
 import csmart.db.gen.tables.records.ClassesRecord;
-import org.jooq.DSLContext;
-import org.jooq.Record;
-import org.jooq.Result;
-import org.jooq.SelectJoinStep;
+import org.jooq.*;
+import org.jooq.impl.DefaultConfiguration;
+import org.jooq.impl.DefaultDSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +21,7 @@ import static csmart.db.gen.tables.Users.USERS;
 
 
 /**
- * Created by sethur on 1/10/2016.
+ * Created by Rajesh Raikwar on 14/12/2017.
  */
 @Repository
 @Transactional
@@ -30,6 +29,10 @@ public class ClassRepo {
 
     @Autowired
     private DSLContext dsl;
+
+    private void setDialact() {
+        ((DefaultConfiguration) ((DefaultDSLContext) dsl).configuration()).setSQLDialect(SQLDialect.POSTGRES);
+    }
 
     public void createClass(Class klass){
         dsl.insertInto(CLASSES)
@@ -83,5 +86,12 @@ public class ClassRepo {
             records.add(user);
         }
         return records;
+    }
+
+    public void deleteClassById(int classID) {
+        setDialact();
+        dsl.delete(CLASSES)
+                .where(CLASSES.ID.eq(classID))
+                .execute();
     }
 }

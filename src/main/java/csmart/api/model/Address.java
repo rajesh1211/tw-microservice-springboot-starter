@@ -3,7 +3,7 @@ package csmart.api.model;
 import csmart.api.db.JsonType;
 
 /**
- * Created by sethur on 1/10/2016.
+ * Created by Rajesh Raikwar on 14/12/2017.
  */
 public class Address implements JsonType{
     private String line1;

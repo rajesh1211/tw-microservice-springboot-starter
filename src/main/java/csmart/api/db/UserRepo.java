@@ -3,6 +3,9 @@ package csmart.api.db;
 import csmart.api.model.User;
 import csmart.db.gen.tables.records.UsersRecord;
 import org.jooq.DSLContext;
+import org.jooq.SQLDialect;
+import org.jooq.impl.DefaultConfiguration;
+import org.jooq.impl.DefaultDSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +19,7 @@ import static csmart.db.gen.tables.Users.USERS;
 
 
 /**
- * Created by sethur on 1/10/2016.
+ * Created by Rajesh Raikwar on 14/12/2017.
  */
 @Repository
 @Transactional
@@ -25,18 +28,28 @@ public class UserRepo {
     @Autowired
     private DSLContext dsl;
 
-    public void createUser(User user){
-        dsl.insertInto(USERS)
+    private void setDialact() {
+        ((DefaultConfiguration) ((DefaultDSLContext) dsl).configuration()).setSQLDialect(SQLDialect.POSTGRES);
+    }
+
+    public User createUser(User user){
+        setDialact();
+        UsersRecord record = dsl.insertInto(USERS)
                 .columns(USERS.ID, USERS.EMAIL, USERS.PASSWORD, USERS.NAME)
                 .values(
                         user.getId(),
                         user.getEmail(),
                         user.getPassword(),
                         user.getName())
-                .execute();
+                .returning()
+                .fetchOne()
+                .into(UsersRecord.class);
+
+        return new User(record);
     }
 
     public User getUserById(int id){
+        setDialact();
         UsersRecord user =
                 dsl.select()
                         .from(USERS)
@@ -48,6 +61,7 @@ public class UserRepo {
     }
 
     public List<User> getUsers() throws SQLException {
+        setDialact();
         ResultSet rs2 = dsl.selectFrom(USERS).fetchResultSet();
         List<User> records = new ArrayList<User>();
         User user;
@@ -60,5 +74,17 @@ public class UserRepo {
         }
 
         return records;
+    }
+
+    public User updateUserById(User user) {
+        setDialact();
+        UsersRecord record = dsl.update(USERS)
+                .set(USERS.NAME, user.getName())
+                .where(USERS.ID.eq(user.getId()))
+                .returning()
+                .fetchOne()
+                .into(UsersRecord.class);
+
+        return new User(record);
     }
 }
