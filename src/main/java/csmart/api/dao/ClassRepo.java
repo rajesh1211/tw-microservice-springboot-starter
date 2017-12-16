@@ -2,7 +2,6 @@ package csmart.api.dao;
 
 import csmart.api.model.Class;
 import csmart.api.model.User;
-import csmart.db.gen.tables.records.ClassesRecord;
 import org.jooq.*;
 import org.jooq.impl.DefaultConfiguration;
 import org.jooq.impl.DefaultDSLContext;

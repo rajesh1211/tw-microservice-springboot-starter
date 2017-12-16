@@ -1,8 +1,5 @@
 package csmart.api.model;
 
-import csmart.api.db.JsonType;
-import csmart.db.gen.tables.records.UsersRecord;
-
 /**
  * Created by Rajesh Raikwar on 14/12/2017.
  */
