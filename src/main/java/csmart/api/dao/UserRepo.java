@@ -1,6 +1,7 @@
 package csmart.api.dao;
 
 import csmart.api.model.User;
+import csmart.db.gen.tables.records.UsersRecord;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DefaultConfiguration;

@@ -1,5 +1,7 @@
 package csmart.api.model;
 
+import csmart.db.gen.tables.records.ClassesRecord;
+
 public class Class {
     private int id;
     private String subject;

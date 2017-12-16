@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import java.sql.SQLException;
 import java.util.List;
 
+
+/* This class is not being used for the task , it was the part of starter kit*/
 @Component
 public class UserService {
     @Autowired
